@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+    web:
+        tty: true
+        build: .
+        command: bash -c "python manage.py runserver 0.0.0.0:8000"
+        container_name: django_ecommerce
+        restart: always
+        volumes: 
+            - .:/django_ecommerce
+        ports: 
+            - "8000:8000"
+        networks:
+            - django_ecommerce_net
+
+networks:
+    django_ecommerce_net:
+        driver: bridge
